@@ -1,0 +1,13 @@
+{
+  "name": "bdd-e2e-tester-hooks",
+  "private": true,
+  "description": "Dependencias dos hooks deterministicos do plugin bdd-e2e-tester (nao e o package.json do projeto onde os testes e2e sao gerados - esse e escafoldado pelo orquestrador-e2e no projeto alvo). Rode `npm install` aqui uma vez apos instalar o plugin para ativar a validacao de Gherkin no hook post-write.",
+  "type": "module",
+  "dependencies": {
+    "@cucumber/gherkin": "^42.0.0",
+    "@cucumber/messages": "^34.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  }
+}

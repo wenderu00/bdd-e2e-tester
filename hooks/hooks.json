@@ -1,0 +1,27 @@
+{
+  "description": "Guardrails deterministicos para o pipeline bdd-e2e-tester: validacao pos-Write de sintaxe Gherkin (.feature), compilacao TypeScript (.page.ts/.steps.ts) e schema dos indices YAML (page-objects/_indice/INDEX.yaml, step-definitions/_indice/INDEX.yaml, features/_cobertura/COBERTURA.yaml, features/_execucoes/RUN-<id>.yaml). Sem claim-id: nomes de arquivo ja sao deterministicos (US-<id>, UC-<id>, nome de pagina), sem corrida de numeracao sequencial a resolver.",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/scripts/hooks/validate-gherkin.mjs"]
+          },
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/scripts/hooks/validate-ts.mjs"]
+          },
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/scripts/hooks/validate-index.mjs"]
+          }
+        ]
+      }
+    ]
+  }
+}

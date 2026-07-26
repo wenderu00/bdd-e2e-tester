@@ -1,0 +1,20 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "bdd-e2e-tester",
+  "description": "Marketplace pessoal do plugin bdd-e2e-tester",
+  "owner": {
+    "name": "Marcio Wendell",
+    "email": "marcio.wendell.contact@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "bdd-e2e-tester",
+      "description": "Pipeline de 6 subagentes que consome cartoes de user story e caso de uso do requisitos-pipeline e gera uma camada de testes e2e BDD (Gherkin + playwright-bdd) com Page Objects, funcionando mesmo sem o sistema real implementado",
+      "source": "./",
+      "author": {
+        "name": "Marcio Wendell",
+        "email": "marcio.wendell.contact@gmail.com"
+      }
+    }
+  ]
+}

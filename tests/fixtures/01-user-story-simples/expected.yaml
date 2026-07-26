@@ -1,0 +1,6 @@
+minimo_scenarios: 1
+requer_rule_block: false
+requer_todo_selectors: true
+metodos_page_object_esperados: []
+step_definitions_esperado: true
+requer_tsc_pass: false

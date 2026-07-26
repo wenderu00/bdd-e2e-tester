@@ -1,0 +1,29 @@
+caso_de_uso_id: UC-1
+necessidade_origem: N-2
+titulo: "Processamento de pagamento no checkout"
+atores: ["cliente", "operadora de cartão"]
+fluxo_principal:
+  passos:
+    - "Cliente informa os dados do cartão"
+    - "Sistema tenta processar o pagamento"
+    - "Pagamento é aprovado"
+  resultado: "Pedido confirmado e e-mail de confirmação enviado ao cliente"
+fluxos_alternativos:
+  - nome: "Pagamento recusado"
+    gatilho: "Operadora recusa o pagamento"
+    passos:
+      - "Sistema mostra mensagem de erro"
+      - "Cliente pode tentar novamente com outro cartão"
+    resultado: "Pedido não é criado até um pagamento ser aprovado"
+fluxos_excecao: []
+regras_relacionadas: ["RN-1"]
+rnfs_relacionados: []
+user_stories_relacionadas: []
+auditoria_qualidade:
+  veredito: aprovado
+  rodadas: 1
+  feedback_pendente: []
+  motivo_falha_auditor: null
+historico_auditoria: []
+confiança: 0.93
+justificativa: "Fluxos principal e alternativo estão explícitos na descrição original, sem necessidade de inferência"

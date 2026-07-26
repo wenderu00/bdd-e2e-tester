@@ -1,0 +1,21 @@
+user_story_id: US-1
+necessidade_origem: N-1
+titulo: "Adicionar produto ao carrinho"
+ator: "cliente"
+acao: "adicionar um produto ao carrinho"
+beneficio: "poder comprá-lo depois"
+criterios_aceite:
+  - dado: "o cliente está vendo a página de um produto disponível"
+    quando: "o cliente clica em \"Adicionar ao carrinho\""
+    entao: "o produto aparece no carrinho com quantidade 1"
+regras_relacionadas: []
+rnfs_relacionados: []
+casos_de_uso_relacionados: []
+auditoria_qualidade:
+  veredito: aprovado
+  rodadas: 1
+  feedback_pendente: []
+  motivo_falha_auditor: null
+historico_auditoria: []
+confiança: 0.9
+justificativa: "Descrição segue o formato padrão de user story sem ambiguidade; critério de aceite cobre o único fluxo descrito"

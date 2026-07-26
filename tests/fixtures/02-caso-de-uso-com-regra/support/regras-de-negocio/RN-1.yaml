@@ -1,0 +1,18 @@
+regra_id: RN-1
+necessidade_origem: N-3
+titulo: "Limite máximo de tentativas de pagamento"
+enunciado: "O cliente pode tentar pagar no máximo 3 vezes por pedido antes de o checkout ser bloqueado"
+condicao_aplicacao: "Vale para qualquer fluxo de pagamento no checkout"
+valor_ou_formula: "tentativas_maximas: 3"
+excecoes: []
+user_stories_relacionadas: []
+casos_de_uso_relacionados: ["UC-1"]
+rnfs_relacionados: []
+auditoria_qualidade:
+  veredito: aprovado
+  rodadas: 1
+  feedback_pendente: []
+  motivo_falha_auditor: null
+historico_auditoria: []
+confiança: 0.95
+justificativa: "Regra e condição de aplicação estão explícitas e sem ambiguidade"

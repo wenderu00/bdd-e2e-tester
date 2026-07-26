@@ -1,0 +1,12 @@
+tests/eval/.runs/
+
+node_modules/
+npm-debug.log*
+
+.DS_Store
+Thumbs.db
+
+graphify-out/.graphify_python
+graphify-out/.graphify_root
+graphify-out/cache/
+graphify-out/cost.json

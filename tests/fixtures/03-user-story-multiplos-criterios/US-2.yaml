@@ -1,0 +1,24 @@
+user_story_id: US-2
+necessidade_origem: N-4
+titulo: "Aplicar cupom de desconto no carrinho"
+ator: "cliente"
+acao: "aplicar um cupom de desconto no carrinho"
+beneficio: "pagar menos pelo pedido"
+criterios_aceite:
+  - dado: "o cliente tem um cupom válido e não expirado"
+    quando: "o cliente insere o código do cupom e confirma"
+    entao: "o desconto do cupom é aplicado ao total do carrinho"
+  - dado: "o cliente tem um cupom expirado"
+    quando: "o cliente insere o código do cupom e confirma"
+    entao: "o sistema mostra uma mensagem de erro informando que o cupom expirou"
+regras_relacionadas: []
+rnfs_relacionados: []
+casos_de_uso_relacionados: []
+auditoria_qualidade:
+  veredito: aprovado
+  rodadas: 1
+  feedback_pendente: []
+  motivo_falha_auditor: null
+historico_auditoria: []
+confiança: 0.88
+justificativa: "Dois critérios de aceite distintos (cupom válido e cupom expirado) estão explícitos na descrição original"

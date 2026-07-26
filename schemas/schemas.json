@@ -1,0 +1,97 @@
+{
+  "page_object_index": {
+    "output_dir": "page-objects/_indice",
+    "singleton_filename": "INDEX.yaml",
+    "required_fields": [
+      { "name": "schema_version", "type": "number", "nullable": false, "min": 1 },
+      {
+        "name": "entradas", "type": "list", "nullable": false, "min_items": 0,
+        "item_fields": [
+          { "name": "nome_pagina", "type": "string", "nullable": false, "min_len": 2 },
+          { "name": "arquivo", "type": "string", "nullable": false, "pattern": "^page-objects/[a-z0-9-]+\\.page\\.ts$" },
+          { "name": "classe", "type": "string", "nullable": false, "min_len": 2 },
+          { "name": "metodos", "type": "list", "nullable": false, "min_items": 0 },
+          { "name": "origens", "type": "list", "nullable": false, "min_items": 1, "item_pattern": "^(US|UC)-\\d+$" }
+        ]
+      }
+    ],
+    "example_yaml": "schema_version: 1\nentradas:\n  - nome_pagina: \"checkout\"\n    arquivo: \"page-objects/checkout.page.ts\"\n    classe: \"CheckoutPage\"\n    metodos: [\"informarDadosCartao\", \"confirmarPagamento\"]\n    origens: [\"UC-2\"]"
+  },
+
+  "step_index": {
+    "output_dir": "step-definitions/_indice",
+    "singleton_filename": "INDEX.yaml",
+    "required_fields": [
+      { "name": "schema_version", "type": "number", "nullable": false, "min": 1 },
+      {
+        "name": "entradas", "type": "list", "nullable": false, "min_items": 0,
+        "item_fields": [
+          { "name": "texto_step", "type": "string", "nullable": false, "min_len": 5 },
+          { "name": "palavra_chave", "type": "string", "nullable": false, "enum": ["Given", "When", "Then"] },
+          { "name": "arquivo", "type": "string", "nullable": false, "pattern": "^step-definitions/(US|UC)-\\d+\\.steps\\.ts$" },
+          { "name": "origens", "type": "list", "nullable": false, "min_items": 1, "item_pattern": "^(US|UC)-\\d+$" }
+        ]
+      }
+    ],
+    "example_yaml": "schema_version: 1\nentradas:\n  - texto_step: \"o cliente informa os dados do cartão\"\n    palavra_chave: When\n    arquivo: \"step-definitions/UC-2.steps.ts\"\n    origens: [\"UC-2\"]"
+  },
+
+  "cobertura": {
+    "output_dir": "features/_cobertura",
+    "singleton_filename": "COBERTURA.yaml",
+    "required_fields": [
+      { "name": "schema_version", "type": "number", "nullable": false, "min": 1 },
+      {
+        "name": "entradas", "type": "list", "nullable": false, "min_items": 0,
+        "item_fields": [
+          { "name": "origem_id", "type": "string", "nullable": false, "pattern": "^(US|UC)-\\d+$" },
+          { "name": "tipo", "type": "string", "nullable": false, "enum": ["user_story", "caso_de_uso"] },
+          { "name": "feature_gerado", "type": "string", "nullable": true },
+          { "name": "page_objects_atualizados", "type": "list", "nullable": false, "min_items": 0 },
+          { "name": "step_definitions_gerados", "type": "list", "nullable": false, "min_items": 0 },
+          { "name": "status", "type": "string", "nullable": false, "enum": ["concluido", "falha_parcial", "pendente"] },
+          {
+            "name": "auditoria", "type": "object", "nullable": false,
+            "fields": [
+              { "name": "feature", "type": "string", "nullable": false, "enum": ["aprovado", "reprovado_apos_limite", "nao_processado"] },
+              { "name": "page_object", "type": "string", "nullable": false, "enum": ["aprovado", "reprovado_apos_limite", "nao_processado"] },
+              { "name": "step_definitions", "type": "string", "nullable": false, "enum": ["aprovado", "reprovado_apos_limite", "nao_processado"] }
+            ]
+          }
+        ]
+      }
+    ],
+    "example_yaml": "schema_version: 1\nentradas:\n  - origem_id: \"UC-2\"\n    tipo: caso_de_uso\n    feature_gerado: \"features/UC-2.feature\"\n    page_objects_atualizados: [\"page-objects/checkout.page.ts\"]\n    step_definitions_gerados: [\"step-definitions/UC-2.steps.ts\"]\n    status: concluido\n    auditoria:\n      feature: aprovado\n      page_object: aprovado\n      step_definitions: aprovado"
+  },
+
+  "execucao": {
+    "output_dir": "features/_execucoes",
+    "id_field": "execucao_id",
+    "id_prefix": "RUN-",
+    "required_fields": [
+      { "name": "execucao_id", "type": "string", "nullable": false, "pattern": "^RUN-\\d+$" },
+      { "name": "resumo_origem", "type": "string", "nullable": false, "min_len": 1 },
+      { "name": "concluido", "type": "boolean", "nullable": false },
+      {
+        "name": "cartoes", "type": "list", "nullable": false, "min_items": 0,
+        "item_fields": [
+          { "name": "origem_id", "type": "string", "nullable": false, "pattern": "^(US|UC)-\\d+$" },
+          { "name": "tipo", "type": "string", "nullable": false, "enum": ["user_story", "caso_de_uso"] },
+          { "name": "status", "type": "string", "nullable": false, "enum": ["processado_ok", "processado_falha"] },
+          { "name": "motivo_falha", "type": "string", "nullable": true }
+        ]
+      }
+    ],
+    "example_yaml": "execucao_id: RUN-1\nresumo_origem: \"Varredura de user-stories/ e casos-de-uso/ pendentes de e2e\"\nconcluido: false\ncartoes:\n  - origem_id: \"UC-2\"\n    tipo: caso_de_uso\n    status: processado_ok\n    motivo_falha: null\nresumo:\n  total: 3\n  ok: 2\n  falhas: 1\n  rnfs_ignorados: 1\n  coerencia_verificada: null"
+  },
+
+  "fragments": {
+    "escaping_rules_e2e": "### Regras de escaping\n\nOs índices YAML (`page-objects/_indice/INDEX.yaml`, `step-definitions/_indice/INDEX.yaml`, `features/_cobertura/COBERTURA.yaml`, `features/_execucoes/RUN-<id>.yaml`) seguem a mesma disciplina de escaping do requisitos-pipeline: todo campo de texto livre (`nome_pagina`, `texto_step`, `resumo_origem`, `motivo_falha`, etc.) sempre entre aspas duplas, nunca sem aspas — escape `\"` como `\\\"`, `\\` como `\\\\`, quebras de linha como `\\n` literal, nunca block scalars (`|`/`>`). Os arquivos `.feature`, `.page.ts` e `.steps.ts` NÃO são YAML — não seguem esta regra, são validados por parsers próprios (Gherkin e `tsc`, ver `docs/hooks.md`).\n\nUm hook de validação roda depois de cada `Write` nos índices YAML e bloqueia (pedindo correção) qualquer um que não parseie ou viole o schema — trate um bloqueio desse hook como um erro a corrigir, reescrevendo o arquivo, não como um problema do conteúdo do cartão de origem.",
+
+    "auditoria_loop_e2e": "## Auditoria de qualidade\n\nAntes de finalizar, submeta o rascunho a uma auditoria de qualidade:\n\n1. Chame `Agent(subagent_type=\"auditor-qualidade-e2e\")` passando o rascunho atual e `tipo_artefato: {{TIPO_ARTEFATO}}`.\n2. Se o veredito for `aprovado`, siga para a próxima seção.\n3. Se for `reprovado`, revise especificamente os pontos listados em `feedback` (sem mexer no que já foi aprovado) e chame o auditor de novo com o rascunho revisado.\n4. Repita até aprovar ou completar **2 revisões (3 chamadas ao auditor no total)**. Se ainda estiver `reprovado` após a 3ª chamada, siga em frente mesmo assim — grave o artefato do jeito que está e registre o veredito final como `reprovado_apos_limite` em `features/_cobertura/COBERTURA.yaml`.\n5. Se a chamada ao auditor falhar (erro de ferramenta, limite de profundidade de subagentes atingido) ou a resposta não puder ser interpretada no formato esperado, não repita a chamada: registre o veredito como `reprovado_apos_limite` com o motivo anotado no resumo final, e siga em frente — nunca trave o fluxo por causa do auditor.\n\nGuarde o veredito final (`aprovado` ou `reprovado_apos_limite`) — você vai precisar dele para atualizar `features/_cobertura/COBERTURA.yaml`.",
+
+    "todo_selector_convencao": "### Convenção de seletores pendentes\n\nSem o sistema real implementado não há DOM pra inspecionar, então todo seletor gerado é uma pendência explícita, nunca uma inferência arriscada: `page.getByTestId('TODO_<pagina>_<elemento_em_snake_case>')` — ex. `page.getByTestId('TODO_checkout_botao_confirmar')`. O prefixo `TODO_` é sempre o início literal do valor passado a `getByTestId`, tornando-o grepável (`grep -rn \"TODO_\" page-objects/`) para localizar tudo que falta implementar quando o componente/página real existir. Nunca invente um seletor CSS, XPath ou texto visível como se fosse garantidamente correto — isso violaria a auditoria de qualidade.",
+
+    "gherkin_rule_block": "### Regras de negócio como `Rule:`\n\nPara cada item em `regras_relacionadas` do cartão de origem, leia `regras-de-negocio/RN-<id>.yaml` (se o arquivo não existir, pule essa regra e não bloqueie a geração) e envolva os `Scenario`s afetados por essa regra num bloco `Rule: <enunciado da RN>` (palavra-chave nativa do Gherkin 6+), em vez de um comentário solto. Se uma US/UC não tiver `regras_relacionadas`, o `.feature` não tem nenhum bloco `Rule:` — isso é o caso comum, não uma omissão."
+  }
+}
