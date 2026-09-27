@@ -12,11 +12,8 @@ explícita (`TODO_*`), nunca uma inferência arriscada de DOM que não existe.
 
 ## Instalação
 
-Repositório privado — clone via SSH (a máquina precisa ter acesso SSH
-configurado a este repo; clone via HTTPS falha por falta de credencial):
-
 ```
-claude plugin marketplace add git@github.com:wenderu00/bdd-e2e-tester.git
+claude plugin marketplace add wenderu00/bdd-e2e-tester
 claude plugin install bdd-e2e-tester@bdd-e2e-tester
 ```
 
